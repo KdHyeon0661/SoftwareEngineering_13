@@ -6,6 +6,7 @@ class UserCreate(BaseModel):
     password1: str
     password2: str
     email: EmailStr
+    alarmAccepted: bool
 
     @validator('username', 'password1', 'password2', 'email')
     def not_empty(cls, v):
@@ -19,17 +20,16 @@ class UserCreate(BaseModel):
             raise ValueError('비밀번호가 일치하지 않습니다')
         return v
 
-
-class Token(BaseModel):
-    access_token: str
-    token_type: str
-    username: str
-
-
 class User(BaseModel):
     id: int
     username: str
     email: str
 
-    class Config:
+    class Config:               # user 모델의 항목들이 자동으로 user schema로 매핑
         orm_mode = True
+
+
+class Token(BaseModel):     # 로그인 출력항목
+    access_token: str
+    token_type: str
+    username: str
