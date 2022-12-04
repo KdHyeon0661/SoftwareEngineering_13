@@ -6,6 +6,9 @@ from starlette.staticfiles import StaticFiles
 from domain.answer import answer_router
 from domain.question import question_router
 from domain.user import user_router
+from domain.health_info import health_info_router
+from domain.recommend_diet_answer import r_answer_router
+from domain.recommend_diet_question import r_question_router
 
 app = FastAPI()
 
@@ -26,6 +29,9 @@ app.add_middleware(
 app.include_router(question_router.router)
 app.include_router(answer_router.router)
 app.include_router(user_router.router)
+app.include_router(health_info_router.router)
+app.include_router(r_answer_router.router)
+app.include_router(r_question_router.router)
 app.mount("/assets", StaticFiles(directory="frontend/dist/assets"))
 
 
