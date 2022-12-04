@@ -10,6 +10,7 @@
     let password2 = ''
     let email = ''
     let alarmAccepted = false
+    let authority = false
 
     function post_user(event) {
         event.preventDefault()
@@ -19,7 +20,8 @@
             password1: password1,
             password2: password2,
             email: email,
-            alarmAccepted: alarmAccepted
+            alarmAccepted: alarmAccepted,
+            authority: authority
         }
         fastapi('post', url, params,
             (json) => {
