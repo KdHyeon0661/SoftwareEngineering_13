@@ -3,7 +3,7 @@ from datetime import datetime
 from sqlalchemy.orm import Session
 
 from domain.recommend_diet_answer.r_answer_schema import RAnswerCreate, RAnswerUpdate
-from testModel import Question, Answer, User
+from models import Question, Answer, User
 
 
 def create_answer(db: Session, question: Question,

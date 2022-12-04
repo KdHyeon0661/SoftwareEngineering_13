@@ -2,11 +2,11 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from starlette import status
 
-from testdb import get_db
+from database import get_db
 from domain.recommend_diet_answer import r_answer_schema, r_answer_crud
 from domain.recommend_diet_question import r_question_crud
 from domain.user.user_router import get_current_user
-from testModel import User
+from models import User
 
 router = APIRouter(
     prefix="/api/ranswer",

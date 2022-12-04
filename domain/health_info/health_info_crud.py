@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from testModel import HealthInfo, User, Answer
+from models import HealthInfo, User, Answer
 from domain.health_info.health_info_schema import HealthInfoCreate
 from sqlalchemy.orm import Session
 
