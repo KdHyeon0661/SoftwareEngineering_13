@@ -1,4 +1,5 @@
 from pydantic import BaseModel, validator, EmailStr
+import datetime
 
 
 class UserCreate(BaseModel):
@@ -7,6 +8,8 @@ class UserCreate(BaseModel):
     password2: str
     email: EmailStr
     alarmAccepted: bool
+    authority: bool
+    modify_date: datetime.datetime | None = None  # 수정일
 
     @validator('username', 'password1', 'password2', 'email')
     def not_empty(cls, v):
@@ -24,13 +27,25 @@ class User(BaseModel):
     id: int
     username: str
     email: str
-
+    alarmAccepted: bool
+    authority: bool
 
     class Config:               # user 모델의 항목들이 자동으로 user schema로 매핑
         orm_mode = True
+
+class UserList(BaseModel):
+    total: int = 0
+    user_list: list[User] = []
+
+class UserUpdate(UserCreate):       # UserCreate class 상속
+    newpwd: str
+
+class UserDelete(BaseModel):
+    username: str                #username으로 교체 고려
 
 
 class Token(BaseModel):     # 로그인 출력항목
     access_token: str
     token_type: str
     username: str
+    authority: bool
